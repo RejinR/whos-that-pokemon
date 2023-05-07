@@ -45,7 +45,7 @@ const PokemonSilhouette: Component<{
     };
   });
   return (
-    <div class="flex flex-col justify-center items-center min-h-[350px]">
+    <div class="flex flex-col justify-center items-center min-h-[350px] flex-grow">
       <canvas
         id="silhouette-canvas"
         classList={{ "hidden": !props.showSilhouette }}
