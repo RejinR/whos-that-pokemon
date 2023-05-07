@@ -12,6 +12,7 @@ interface Pokemon {
 
 const WhoThatPokemonPage: Component = () => {
   const [showSilhouette, setSilhouette] = createSignal<boolean>(true);
+  const [pokedexEntry, setPokedexEntry] = createSignal<number>(1);
   const [pokemons, setPokemons] = createSignal<Pokemon[]>([]);
   const [guess, setGuess] = createSignal<string>('');
   onMount(async () => {
@@ -30,7 +31,7 @@ const WhoThatPokemonPage: Component = () => {
         {pokemons().length && (
           <>
             <PokemonSilhouette
-              pokedexEntry={1}
+              pokedexEntry={pokedexEntry()}
               showSilhouette={showSilhouette()}
             />
             <TextInput value={guess()} onChange={(val) => setGuess(val)} />
