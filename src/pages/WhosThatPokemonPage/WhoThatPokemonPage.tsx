@@ -13,6 +13,7 @@ interface Pokemon {
 const WhoThatPokemonPage: Component = () => {
   const [showSilhouette, setSilhouette] = createSignal<boolean>(true);
   const [pokemons, setPokemons] = createSignal<Pokemon[]>([]);
+  const [guess, setGuess] = createSignal<string>('');
   onMount(async () => {
     setInterval(() => {
       setSilhouette(!showSilhouette());
@@ -32,7 +33,7 @@ const WhoThatPokemonPage: Component = () => {
               pokedexEntry={1}
               showSilhouette={showSilhouette()}
             />
-            <TextInput />
+            <TextInput value={guess()} onChange={(val) => setGuess(val)} />
             <span class="text-white text-xl cursor-pointer">
               I don't know !
             </span>
