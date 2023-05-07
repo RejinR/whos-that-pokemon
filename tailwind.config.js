@@ -8,5 +8,6 @@ module.exports = {
   theme: {
     extend: {},
   },
-  plugins: [],
+  plugins: ['solid'],
+  extend: ['eslint:recommended', 'plugin:solid/typescript'],
 }

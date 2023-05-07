@@ -10,11 +10,18 @@
   "license": "MIT",
   "devDependencies": {
     "autoprefixer": "^10.4.14",
+    "eslint": "^8.40.0",
+    "eslint-config-standard-with-typescript": "latest",
+    "eslint-plugin-import": "^2.25.2",
+    "eslint-plugin-n": "^15.0.0",
+    "eslint-plugin-promise": "^6.0.0",
+    "eslint-plugin-solid": "^0.12.1",
     "postcss": "^8.4.23",
     "prettier": "2.8.8",
     "tailwindcss": "^3.3.2",
-    "typescript": "^5.0.4",
+    "typescript": "*",
     "vite": "^4.3.5",
+    "vite-plugin-eslint": "^1.8.1",
     "vite-plugin-solid": "^2.7.0"
   },
   "dependencies": {
