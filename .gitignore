@@ -5,3 +5,5 @@ dist
 .pnp.loader.mjs
 pnpm-lock.yaml
 yarn.lock
+.DS_Store
+.yarnrc.yml
