@@ -10,4 +10,5 @@ module.exports = {
   },
   plugins: ['solid'],
   extend: ['eslint:recommended', 'plugin:solid/typescript'],
-}
+  // eslint-disable-next-line semi
+};
