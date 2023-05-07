@@ -1,0 +1,24 @@
+.shaker {
+  transform: rotate(0deg);
+  animation: 0.5s ease-in-out 1s shake;
+  animation-iteration-count: infinite;
+}
+
+@keyframes shake {
+  0% {
+    transform: rotate(-10deg);
+  }
+  25% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(10deg);
+  }
+  75% {
+    transform: rotate(0deg);
+    animation-delay: 2s;
+  }
+  100% {
+    transform: rotate(-10deg);
+  }
+}
