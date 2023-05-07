@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { Component, createSignal, onMount } from 'solid-js';
-import TextInput from '../../component/TextInput';
-import PokemonSilhouette from '../../component/PokemonSilhouette';
+import TextInput from '../../component/TextInput/TextInput';
+import PokemonSilhouette from '../../component/PokemonSilhouette/PokemonSilhouette';
 import PokeballSpinner from '../../component/PokeballSpinner/PokeballSpinner';
 
 interface Pokemon {
