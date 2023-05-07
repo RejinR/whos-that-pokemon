@@ -1,12 +1,17 @@
 import axios from 'axios';
-import { Component, onMount } from 'solid-js';
+import { Component, createEffect, onMount } from 'solid-js';
+import { Pokemon } from '../../types';
 
 const PokemonSilhouette: Component<{
-  pokedexEntry: number;
+  pokemonToGuess: Pokemon | null;
   showSilhouette: boolean;
 }> = (props) => {
-  onMount(async () => {
-    const response = await axios.get(`${props.pokedexEntry}.png`, {
+  createEffect(() => {
+    drawSilhouette(props.pokemonToGuess?.id);
+  });
+
+  const drawSilhouette = async (pokemonId) => {
+    const response = await axios.get(`${pokemonId}.png`, {
       responseType: 'arraybuffer',
     });
     const base64Image = btoa(
@@ -43,14 +48,15 @@ const PokemonSilhouette: Component<{
       const silhouetteImage = new Image();
       silhouetteImage.src = canvas.toDataURL();
     };
-  });
+  };
+  onMount(() => drawSilhouette(1));
   return (
     <div class="flex flex-col justify-center items-center min-h-[350px] flex-grow">
       <canvas
         id="silhouette-canvas"
         classList={{ hidden: !props.showSilhouette }}
       />
-      {!props.showSilhouette && <img src={`${props.pokedexEntry}.png`} />}
+      {!props.showSilhouette && <img src={`${props.pokemonToGuess?.id}.png`} />}
     </div>
   );
 };

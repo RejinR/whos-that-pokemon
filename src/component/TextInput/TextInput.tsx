@@ -9,9 +9,9 @@ const TextInput: Component<{
   };
   return (
     <input
-      class="input w-full h-12 rounded-lg border-none text-2xl text-center outline-none"
+      class="input w-full h-12 rounded-lg border-none text-2xl text-center outline-none capitalize"
       value={props.value}
-      onChange={onChange}
+      onInput={onChange}
     />
   );
 };
