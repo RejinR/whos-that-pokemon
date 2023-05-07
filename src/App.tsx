@@ -1,8 +1,8 @@
-import { Component } from "solid-js";
-import WhoThatPokemonPage from "./pages/WhoThatPokemonPage";
+import { Component } from 'solid-js'
+import WhoThatPokemonPage from './pages/WhoThatPokemonPage'
 
 const App: Component = () => {
-  return <WhoThatPokemonPage />;
-};
+  return <WhoThatPokemonPage />
+}
 
-export default App;
+export default App
