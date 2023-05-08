@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { Component, createEffect, onMount } from 'solid-js';
+import { Component, Show, createEffect, onMount } from 'solid-js';
 import { Pokemon } from '../../types';
 
 const PokemonSilhouette: Component<{
@@ -56,7 +56,9 @@ const PokemonSilhouette: Component<{
         id="silhouette-canvas"
         classList={{ hidden: !props.showSilhouette }}
       />
-      {!props.showSilhouette && <img src={`${props.pokemonToGuess?.id}.png`} />}
+      <Show when={!props.showSilhouette}>
+        <img src={`${props.pokemonToGuess?.id}.png`} />
+      </Show>
     </div>
   );
 };
