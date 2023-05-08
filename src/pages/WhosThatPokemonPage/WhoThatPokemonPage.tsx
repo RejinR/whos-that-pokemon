@@ -6,6 +6,8 @@ import PokeballSpinner from '../../component/PokeballSpinner/PokeballSpinner';
 import { getRandomNumber } from '../../utils/num-utils';
 import { Pokemon } from '../../types';
 
+let guessedPokemons: number[] = [];
+
 const WhoThatPokemonPage: Component = () => {
   const [showSilhouette, setSilhouette] = createSignal<boolean>(true);
   const [pokemonToGuess, setPokemonToGuess] = createSignal<Pokemon | null>(
@@ -13,32 +15,47 @@ const WhoThatPokemonPage: Component = () => {
   );
   const [pokemons, setPokemons] = createSignal<Pokemon[]>([]);
   const [guess, setGuess] = createSignal<string>('');
+
   onMount(async () => {
     setTimeout(async () => {
       const response = await axios.get('pokemons.json');
       setPokemons(response.data);
       setPokemonToGuess(response.data[0]);
-    }, 2000);
+    }, 10000);
   });
-  const forfeit = () => {
+
+  const changePokemonToGuess = () => {
     setSilhouette(false);
     setTimeout(() => {
       setGuess('');
       setSilhouette(true);
-      setPokemonToGuess(pokemons()[getRandomNumber(151)]);
+      setPokemonToGuess(pokemons()[getUniquePokemon()]);
     }, 2000);
   };
+
+  const getUniquePokemon = () => {
+    const aRandomNumber = getRandomNumber(151);
+    if (guessedPokemons.includes(aRandomNumber)) {
+      return getUniquePokemon();
+    }
+    return aRandomNumber;
+  };
+
   const onPokemonGuessChange = (pokemonGuess) => {
     setGuess(pokemonGuess);
     if (pokemonGuess.toLowerCase() === pokemonToGuess()?.name?.toLowerCase()) {
       // you guessed it right
-      forfeit();
+      const pokemon = pokemonToGuess();
+      guessedPokemons = guessedPokemons.concat(pokemon?.id!);
+      changePokemonToGuess();
     }
   };
+
   const onGiveUp = () => {
     setGuess(pokemonToGuess()?.name!);
-    forfeit();
+    changePokemonToGuess();
   };
+
   return (
     <div class="grid items-center justify-center w-full h-full bg-[#3498db]">
       <div class="min-h-[650px] p-3 flex flex-col gap-4">
