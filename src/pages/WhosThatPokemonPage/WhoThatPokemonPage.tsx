@@ -29,10 +29,10 @@ const WhoThatPokemonPage: Component = () => {
     }, 5000);
   });
 
-  const changePokemonToGuess = () => {
+  const changePokemonToGuess = (gameLost: boolean) => {
     setShowSilhouette(false);
     setTimeout(() => {
-      setScore(0);
+      gameLost && setScore(0);
       guessedPokemons = [];
       setGuess('');
       setShowSilhouette(true);
@@ -55,7 +55,7 @@ const WhoThatPokemonPage: Component = () => {
       setScore(score() + 1);
       const pokemon = pokemonToGuess();
       guessedPokemons = guessedPokemons.concat(pokemon?.id!);
-      changePokemonToGuess();
+      changePokemonToGuess(false);
     }
   };
 
@@ -65,7 +65,7 @@ const WhoThatPokemonPage: Component = () => {
       localStorage.setItem(HS_KEY, score().toString());
     }
     setGuess(pokemonToGuess()?.name!);
-    changePokemonToGuess();
+    changePokemonToGuess(true);
   };
 
   return (
@@ -75,7 +75,7 @@ const WhoThatPokemonPage: Component = () => {
       </div>
       <div class="grid items-center justify-center">
         <div class="min-h-[650px] p-3 flex flex-col gap-4">
-          <header class="text-white text-4xl">Who's That Pokemon ?</header>
+          <header class="text-white text-4xl">Who's That Pokémon ?</header>
           <Show when={pokemons().length && pokemonToGuess()}>
             <PokemonSilhouette
               pokemonToGuess={pokemonToGuess()}
