@@ -32,11 +32,14 @@ const WhoThatPokemonPage: Component = () => {
   const changePokemonToGuess = (gameLost: boolean) => {
     setShowSilhouette(false);
     setTimeout(() => {
-      gameLost && setScore(0);
-      guessedPokemons = [];
+      if (gameLost) {
+        setScore(0);
+        guessedPokemons = [];
+      }
       setGuess('');
       setShowSilhouette(true);
-      setPokemonToGuess(pokemons()[getUniquePokemon()]);
+      const uniquePokemon = getUniquePokemon();
+      setPokemonToGuess(pokemons()[uniquePokemon - 1]);
     }, 2000);
   };
 
